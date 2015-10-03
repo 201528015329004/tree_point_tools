@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Section_and_Clustering.ViewModels;
 
 namespace Section_and_Clustering.Views
 {
@@ -20,9 +21,18 @@ namespace Section_and_Clustering.Views
     /// </summary>
     public partial class ClusterView : UserControl
     {
+        private ClusterViewModel viewModel;
+
         public ClusterView()
         {
             InitializeComponent();
+            this.viewModel = new ClusterViewModel();
+            this.DataContext = this.viewModel;
+        }
+
+        private void BrowseFileOnClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
