@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section and Clustering", "Section and Clustering\Section and Clustering.csproj", "{D62BD6E6-B8B9-4244-A954-9EB82B14B186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spatial", "..\mathnet-spatial\src\Spatial\Spatial.csproj", "{1F3364C6-9DA3-4006-B83F-6D1335099895}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D62BD6E6-B8B9-4244-A954-9EB82B14B186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62BD6E6-B8B9-4244-A954-9EB82B14B186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62BD6E6-B8B9-4244-A954-9EB82B14B186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62BD6E6-B8B9-4244-A954-9EB82B14B186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3364C6-9DA3-4006-B83F-6D1335099895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3364C6-9DA3-4006-B83F-6D1335099895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3364C6-9DA3-4006-B83F-6D1335099895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3364C6-9DA3-4006-B83F-6D1335099895}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

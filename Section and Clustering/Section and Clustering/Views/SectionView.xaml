@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Section_and_Clustering.Views.SectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Section_and_Clustering.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3" 
+                   Margin="10"
+                   TextWrapping="Wrap">
+            This is the sectioning tool, which extracts all points from a large point cloud file within a given distance from a Z datum.
+        </TextBlock>
+        
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="5">
+            Source File
+        </TextBlock>
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="2" 
+                 Text="{Binding InputFile}"/>
+        <Button Grid.Row="1"
+                Grid.Column="3" 
+                Click="BrowseFileOnClick"
+                Margin="5 2">
+            <TextBlock Margin="5 0">
+                Browse
+            </TextBlock>
+        </Button>
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Margin="5">
+            Z Datum (meters)
+        </TextBlock>
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="2" 
+                 Width="120"
+                 HorizontalAlignment="Left"
+                 Text="{Binding ZDatum}"/>
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="5">
+            Tolerance (cm)
+        </TextBlock>
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="2" 
+                 Width="120"
+                 HorizontalAlignment="Left"
+                 Text="{Binding Tolerance}"/>
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Margin="5">
+            Progress
+        </TextBlock>
+        <ProgressBar Grid.Row="4"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="2"
+                     Margin="2"
+                     Minimum="0"
+                     Maximum="100"
+                     Value="{Binding ProgressPercentage}" />
+
+        <Button Grid.Row="5"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Right"
+                Width="150"
+                IsEnabled="{Binding IsNotBusy}"
+                Click="ExecuteSectionOnClick"
+                Margin="5">
+            <TextBlock Margin="5">Execute Sectioning</TextBlock>
+        </Button>
+    </Grid>
+</UserControl>
