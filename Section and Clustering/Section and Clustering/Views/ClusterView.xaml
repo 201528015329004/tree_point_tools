@@ -48,17 +48,17 @@
             </TextBlock>
         </Button>
 
-        <TextBlock Grid.Row="2"
+        <TextBlock Grid.Row="3"
                    Grid.Column="0"
                    Margin="5">
-            Z Datum (meters)
+            Tolerance (cm)
         </TextBlock>
-        <TextBox Grid.Row="2"
+        <TextBox Grid.Row="3"
                  Grid.Column="1"
                  Margin="2" 
                  Width="120"
                  HorizontalAlignment="Left"
-                 Text="{Binding ZDatum}"/>
+                 Text="{Binding Tolerance}"/>
 
         <TextBlock Grid.Row="3"
                    Grid.Column="0"
@@ -77,22 +77,20 @@
                    Margin="5">
             Progress
         </TextBlock>
-        <ProgressBar Grid.Row="4"
-                     Grid.Column="1"
-                     Grid.ColumnSpan="2"
-                     Margin="2"
-                     Minimum="0"
-                     Maximum="100"
-                     Value="{Binding ProgressPercentage}" />
+        <TextBlock Grid.Row="4"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Margin="5"
+                   Text="{Binding ProgressText}" />
 
         <Button Grid.Row="5"
                 Grid.ColumnSpan="3"
                 HorizontalAlignment="Right"
                 Width="150"
                 IsEnabled="{Binding IsNotBusy}"
-                Click="ExecuteSectionOnClick"
+                Click="ExecuteClusteringOnClick"
                 Margin="5">
-            <TextBlock Margin="5">Execute Sectioning</TextBlock>
+            <TextBlock Margin="5">Execute Clustering</TextBlock>
         </Button>
     </Grid>
 </UserControl>

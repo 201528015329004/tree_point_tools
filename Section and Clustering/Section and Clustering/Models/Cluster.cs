@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MathNet.Spatial.Euclidean;
+using Newtonsoft.Json;
 
 namespace Section_and_Clustering.Models
 {
+    [JsonConverter(typeof(ClusterConverter))]
     public class Cluster
     {
         private List<Point3D> points;
+
+        public int Count => points.Count;
+
+        public List<Point3D> Points => points;
 
         /// <summary>
         /// Create an empty cluster
@@ -37,6 +43,19 @@ namespace Section_and_Clustering.Models
             this.points.AddRange(b.points);
         }
 
+        public Cluster(IEnumerable<Cluster> merges)
+        {
+            this.points = new List<Point3D>();
+            foreach (var cluster in merges)
+            {
+                this.points.AddRange(cluster.points);
+            }
+        }
+
+        public IEnumerable<string> GetTextEnumerable()
+        {
+            return from x in this.points select string.Format("{0} {1} {2}", x.X, x.Y, x.Z);
+        } 
 
         /// <summary>
         /// Get the minimum distance between two clusters

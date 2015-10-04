@@ -14,6 +14,10 @@
             </TabItem>
             
             <TabItem Header="Cluster Trunks">
+                <views:ClusterView />
+            </TabItem>
+            
+            <TabItem Header="Process Clusters">
                 
             </TabItem>
         </TabControl>
