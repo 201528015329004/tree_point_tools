@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         xmlns:local="clr-namespace:Section_and_Clustering.Views"
         xmlns:views="clr-namespace:Section_and_Clustering.Views"
-        Title="Point Cloud Sectioning and Clustering" Height="350" Width="525">
+        Title="Point Cloud Sectioning and Clustering" Height="350" Width="654.167">
     <Grid>
         <TabControl>
             <TabItem Header="Section Cloud">
@@ -18,7 +18,7 @@
             </TabItem>
             
             <TabItem Header="Process Clusters">
-                
+                <views:ClusterProcessingView />
             </TabItem>
         </TabControl>
     </Grid>

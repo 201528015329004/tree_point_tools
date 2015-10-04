@@ -35,12 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LMDotNet, Version=1.7.3.83, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LMDotNet.1.7.3\lib\net452\LMDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,11 +65,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\CircleFitter.cs" />
     <Compile Include="Models\Cluster.cs" />
     <Compile Include="Models\ClusterConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\ClusterProcessingViewModel.cs" />
     <Compile Include="ViewModels\ClusterViewModel.cs" />
     <Compile Include="ViewModels\SectionViewModel.cs" />
+    <Compile Include="Views\ClusterProcessingView.xaml.cs">
+      <DependentUpon>ClusterProcessingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClusterView.xaml.cs">
       <DependentUpon>ClusterView.xaml</DependentUpon>
     </Compile>
@@ -83,6 +93,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ClusterProcessingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClusterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,7 +140,16 @@
       <Name>Spatial</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="lmfit32\lmfit.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="lmfit32\lmfit.pdb" />
+    <None Include="lmfit64\lmfit.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="lmfit64\lmfit.pdb" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

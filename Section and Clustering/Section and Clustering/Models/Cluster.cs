@@ -52,6 +52,11 @@ namespace Section_and_Clustering.Models
             }
         }
 
+        public Cluster(IEnumerable<Point3D> initialPoints)
+        {
+            this.points = new List<Point3D>(initialPoints);
+        }
+
         public IEnumerable<string> GetTextEnumerable()
         {
             return from x in this.points select string.Format("{0} {1} {2}", x.X, x.Y, x.Z);
