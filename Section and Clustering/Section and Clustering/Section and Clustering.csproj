@@ -68,6 +68,7 @@
     <Compile Include="Models\CircleFitter.cs" />
     <Compile Include="Models\Cluster.cs" />
     <Compile Include="Models\ClusterConverter.cs" />
+    <Compile Include="Models\TrunkData.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\ClusterProcessingViewModel.cs" />
     <Compile Include="ViewModels\ClusterViewModel.cs" />

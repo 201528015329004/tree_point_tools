@@ -47,5 +47,16 @@ namespace Section_and_Clustering.Views
         {
             this.viewModel.Process();
         }
+
+        private void BrowsePointFileOnClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "XYZ Point Cloud File *.xyz | *.xyz";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.viewModel.PointFile = dialog.FileName;
+            }
+        }
     }
 }
