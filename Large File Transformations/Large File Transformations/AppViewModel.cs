@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
+using MathNet.Spatial.Euclidean;
+using MathNet.Spatial.Units;
 
 namespace Large_File_Transformations
 {
@@ -94,8 +98,11 @@ namespace Large_File_Transformations
             this.OutputFileName = Path.Combine(directory, newName);
         }
 
-        public void ExecuteThinning()
+        public void ExecuteTransformation()
         {
+            if (!TransformationStringParser.Parse(this.TransformationString).IsValid)
+                return;
+
             this.IsNotBusy = false;
 
             BackgroundWorker worker = new BackgroundWorker();
@@ -114,6 +121,14 @@ namespace Large_File_Transformations
             long readSize = 0;
             List<string> buffer = new List<string>();
 
+            // Load the transforms
+            var transform = TransformationStringParser.Parse(this.TransformationString);
+            Angle angle = new Angle(transform.Rz, new Degrees());
+            Vector3D rotationAxis = new Vector3D(0, 0, 1);
+            Vector3D shift = new Vector3D(transform.Tx, transform.Ty, transform.Tz);
+
+            Regex extractor = new Regex(@"-{0,1}\d*\.\d+");
+
             using (StreamReader reader = new StreamReader(this.InputFileName))
             {
                 string line;
@@ -122,15 +137,17 @@ namespace Large_File_Transformations
                     readSize += ASCIIEncoding.ASCII.GetByteCount(line);
 
                     // Do the work here and add it to buffer
-
-
-                    /*
-                    lineCount++;
-                    if (lineCount % this.TransformationString == 0)
+                    var matches = extractor.Matches(line);
+                    if (matches.Count != 3)
                     {
-                        buffer.Add(line);
-                    }*/
+                        throw new ArgumentException("Error, wrong number of matches in line: " + line);
+                    }
 
+                    var p = new Point3D(double.Parse(matches[0].ToString()), double.Parse(matches[1].ToString()), double.Parse(matches[2].ToString()));
+                    // Point3D t = (p.Rotate(rotationAxis, angle)) + shift;
+                    Point3D t = (p + shift).Rotate(rotationAxis, angle);
+                    buffer.Add(t.X + " " + t.Y + " " + t.Z);
+                    
                     if (buffer.Count >= 500)
                     {
                         File.AppendAllLines(this.OutputFileName, buffer);
@@ -146,6 +163,7 @@ namespace Large_File_Transformations
         private void WorkerOnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs runWorkerCompletedEventArgs)
         {
             this.IsNotBusy = true;
+            this.DisplayText = "Done";
         }
 
         private void WorkerOnProgressChanged(object sender, ProgressChangedEventArgs progressChangedEventArgs)

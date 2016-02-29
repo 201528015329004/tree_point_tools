@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Large_File_Transformations"
         mc:Ignorable="d"
         Title="Large Point Cloud Transformation" Height="263.934" Width="577.357">
     <Grid>
@@ -63,7 +64,15 @@
                  Grid.ColumnSpan="2"
                  Margin="2"
                  Grid.Row="3" 
-                 Text="{Binding ThinFactor}">
+                 x:Name="TransformationTextbox">
+            <TextBox.Text>
+                <Binding Path="TransformationString"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:TransformationStringValidator />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
             <TextBox.ToolTip>
                 <TextBlock>
                     Tx, Ty, Tz, Rz
@@ -91,6 +100,17 @@
                 Width="200"
                 IsEnabled="{Binding IsNotBusy}"
                 Click="ExecuteThinning_OnClick">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=(Validation.HasError), ElementName=TransformationTextbox}"
+                                     Value="False">
+                            <Setter Property="IsEnabled" Value="True" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
             <TextBlock Margin="5">Execute</TextBlock>
         </Button>
     </Grid>

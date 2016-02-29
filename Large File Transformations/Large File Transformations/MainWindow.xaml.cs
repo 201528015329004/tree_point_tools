@@ -42,7 +42,7 @@ namespace Large_File_Transformations
 
         private void ExecuteThinning_OnClick(object sender, RoutedEventArgs e)
         {
-            this.viewModel.ExecuteThinning();
+            this.viewModel.ExecuteTransformation();
         }
     }
 }
